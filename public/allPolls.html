@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+		<link href="/public/css/myMain.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<header >
+		<a class="menu1 pull-left" href="/myindex">Home</a>
+		<p class='menu1 pull-left '>|</p>
+		<a class="menu1 pull-left" href="/profile">Profile</a>
+		<a class="menu2  pull-right" href="/logout">Logout</a>
+		<div class='name'><p class=' text-center'>Awesome Voting App</p></div>
+	</header>
+
+	<body>
+	
+		<div class="container box boxSize7">
+			<h2 class= 'text-center '>You can see every Polls in here</h2>
+			<div id='dispPollCreated'></div>
+			<div class='morePoll-container'>
+				<button class='morePolls btn'>More Polls</button>
+			</div>
+		</div>
+		
+		
+		
+		<script type="text/javascript" src="common/ajax-functions.js"></script>
+		<script type='text/javascript' src='controllers/allPolls.client.js'></script>
+		
+	</body>
+	
+	<footer>
+		<p> Created by Paul-Emile Chantrel</p>
+	</footer>
+
+</html>

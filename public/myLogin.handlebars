@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+		<link href="/public/css/Login.css" rel="stylesheet" type="text/css">
+	</head>
+
+	
+
+	<body class='loginBody'>
+		<img src="/public/img/Logo.png" / class="logo">
+		<h1 class='title text-center'>Awesome Voting App</h1>
+		<div class="container box">
+			<button class='text-center btn loginBtn'>Login</button>
+			{{#if success_msg}}
+				<div class="alert alert-success text-center">{{success_msg}}</div>
+			{{/if}}
+			<form action='log' class='loginBlock' method='post'>
+				<input type='text' name='username' required="required" placeholder="User Name" class='logUserName'>
+				<input type='password' name='password' requied='requied' placeholder='Password 'class='logPassUser'>
+				<input type='submit' value='submit'class='logSubmitBtn'>
+			</form>
+			
+			
+			{{#if errors}}
+				{{#each errors}}
+					<div class="alert alert-danger text-center ">{{msg}}</div>
+				{{/each}}
+			{{/if}}
+			
+			{{#if error}}
+				<div class="alert alert-danger text-center">{{error}}</div>
+			{{/if}}
+			
+			{{#if error_msg}}
+				<div class="alert alert-danger text-center">{{error_msg}}</div>
+			{{/if}}
+			<form action='sign' class='signUpBlock' method='post'>
+				<input type='email' name='mail' required="required" placeholder="E-mail adress" class='logUserName'>
+				<input type='text' name='userName' required="required" placeholder="User Name" class='logUserName'>
+				<input type='password' name='ps' requied='required' placeholder='Password 'class='logPassUser'>
+				<input type='password' name='Cps' requied='required' placeholder='Confirm Password 'class='logPassUser'>
+				<input type='submit' value='submit'class='logSubmitBtn'>
+			</form>
+			<button class='text-center btn signUpBtn'>Sign Up</button>
+		</div>
+		
+		
+		<script type="text/javascript" src="common/ajax-functions.js"></script>
+		<script type="text/javascript" src="controllers/loginController.client.js"></script>
+	</body>
+	
+
+</html>

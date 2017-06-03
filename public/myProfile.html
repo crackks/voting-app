@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Awesome Voting App - Profile</title>
+		<link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+		<link href="/public/css/myMain.css" rel="stylesheet" type="text/css">
+	</head>
+    	<header >
+		<a class="menu1 pull-left" href="/">Home</a>
+		<a class="menu2  pull-right" href="/logout">Logout</a>
+		<div class='name'><p class=' text-center'>Awesome Voting App</p></div>
+		</header >
+	<body>
+		<div class="profile-box box">
+			<img src="/public/img/logo2.png" / class="logo">
+			<p><b>User Name: </b ><span class="displayProfile"id='userName'></span></p>
+			<p><b>Number of Votes: </b ><span class="displayProfile" id='nbrVote'></span></p>
+			<p><b>Number of Polls Created: </b><span class="displayProfile" id="nbrPoll"></span> </p>
+		</div>
+		
+		<script type="text/javascript" src="common/ajax-functions.js"></script>
+		<script type="text/javascript" src="controllers/myuserController.client.js"></script>
+	</body>
+	
+	
+    <footer>
+		<p> Created by Paul-Emile Chantrel</p>
+	</footer>
+
+</html>

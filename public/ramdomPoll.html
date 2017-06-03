@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+	
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+		<link href="/public/css/myMain.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<header >
+		<a class="menu1 pull-left" href="/">Home</a>
+		<p class='menu1 pull-left '>|</p>
+		<a class="menu1 pull-left" href="/profile">Profile</a>
+		<a class="menu2  pull-right" href="/logout">Logout</a>
+		<div class='name'><p class=' text-center'>Awesome Voting App</p></div>
+	</header>
+
+	<body>
+		<h2 class='pollAddedTitle'>Here is a Poll</h2>	
+		<div class="container box boxSize4">
+			
+			<p class='pollName text-center'><span id='pollName'></span></p>
+			<p class='CreatedByRdm text-center' >Created By <span id='cBy'></span></p></p>
+			    <div class='graph'>
+			          <div class='rectangle1'>
+			        	<p class="percent"><span  id="percent1"></span></p>
+			            <p class='dispVote text-center'><span id="nbrVote1"></span></p>
+			        </div>
+			        <div class='rectangle2'> 
+			        <p class="percent"><span  id="percent2"></span></p>
+			            <p class='dispVote text-center'><span id="nbrVote2"></span></p>
+			        </div>
+			       <div class='rectangle3'style='display:none'> 
+			             <p class="percent"><span  id="percent3"></span></p>
+			             <p class='dispVote text-center'><span id="nbrVote3"></span></p>
+			        </div>
+			        <div class='rectangle4' style='display:none'> 
+			            <p class="percent"><span  id="percent4"></span></p>
+			            <p class='dispVote text-center'><span id="nbrVote4"></span></p>
+			        </div>
+			    </div>
+			      
+				<div class='btn-containor'>     
+    				<button class='option1-btn btn' ><span id='showOpt1'></span></button>
+    				<button class='option2-btn btn' ><span id='showOpt2'></span></button>
+    				<button class='option3-btn btn'  style='display:none'><span id='showOpt3'></span></button>
+    				<button class='option4-btn btn'  style='display:none'><span id='showOpt4'></span></button>
+				</div>
+		    	<div class='alert alert-danger alreadyVoteRdm'>You already Voted in this Poll</div>
+		   	
+		</div>
+		<button class='btn rdmPoll rdmBtn'>Random Poll</button>
+		
+	    <script type="text/javascript" src="common/ajax-functions.js"></script>
+		<script type='text/javascript' src="controllers/showRdMPoll.client.js"></script>
+    
+	</body>
+	
+	<footer>
+		<p> Created by Paul-Emile Chantrel</p>
+	</footer>
+
+</html>

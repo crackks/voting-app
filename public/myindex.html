@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Awesome Voting App - Dashboard</title>
+		<link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+		<link href="/public/css/myMain.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<header >
+		<a class="menu1 pull-left" href="/">Home</a>
+		<p class='menu1 pull-left '>|</p>
+		<a class="menu1 pull-left" href="/profile">Profile</a>
+		<a class="menu2  pull-right" href="/logout">Logout</a>
+		<div class='name'><p class=' text-center'>Awesome Voting App</p></div>
+	</header>
+
+	<body>
+		
+		<div class="container box boxSize1">
+			<h2 class= text-center>Dashboard</h2>
+			<p class="Welcome text-center"> Welcome, <span id="userName"></span> ! What are going to do today?</p>
+			<div class='btn-container DashBtn row'>
+				<div class='col-xs-4'>
+					<button class='btn newPoll' ><a href='/newPoll'>New Poll</a></button>
+				</div>
+				<div class='col-xs-4'>
+					<button class='btn myPolls' href='/myPolls'><a href='/myPolls'>My Polls</a></button>
+				</div>
+				<div class='col-xs-4'>
+					<button class='btn rdmPoll' href='/rdmPoll'><a href='/rdmPoll'>Random Poll</a></button>
+				</div>
+			</div>
+		</div>
+		
+		<div class='pollContainer'>
+			<div class="container box boxSize21">
+				<h2 class= 'text-center title'>Recent Polls</h2>
+				<div id='dispRecentPolls'></div>
+			</div>
+			<div class="container box boxSize22">
+				<h2 class= 'text-center title'>Most Voted Polls</h2>
+				<div id='dispMostVotedPolls'></div></div>
+		</div>
+		
+		<div class='morePoll box text-center'>
+			<a href='/allPolls'><h2 class='morePolltxt'>Wanna see every Polls?</h2></a>
+		</div>
+		
+		<script type="text/javascript" src="common/ajax-functions.js"></script>
+		<script type='text/javascript' src="controllers/indexPoll.client.js"></script>
+		<script type="text/javascript" src="controllers/myuserController.client.js"></script>
+	</body>
+	
+	<footer>
+		<p> Created by Paul-Emile Chantrel</p>
+	</footer>
+
+</html>
