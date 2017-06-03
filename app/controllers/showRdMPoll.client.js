@@ -42,14 +42,14 @@ window.onload = function(){
         }
         
         var nbrOptions=showPm.info.optionNbr;
-        
+        setOptWidth(showPm.info.options);
         id=showPm._id;
         pollCreator.innerHTML=showPm.who.made.userName;
         pollName.innerHTML=showPm.info.Name;
         option1.innerHTML=showPm.info.options[0].name;
         option2.innerHTML=showPm.info.options[1].name;
-        rect1.style.height=Number(Number(showPm.info.options[0].nbrVote/(showPm.info.totalVote+1))*80+7).toString()+'%'
-        rect2.style.height=Number(Number(showPm.info.options[1].nbrVote/(showPm.info.totalVote+1))*80+7).toString()+'%'
+        rect1.style.height=Number(Number(showPm.info.options[0].nbrVote/(showPm.info.totalVote+1))*80+7).toString()+'%';
+        rect2.style.height=Number(Number(showPm.info.options[1].nbrVote/(showPm.info.totalVote+1))*80+7).toString()+'%';
         opt1Btn.style['background-color']=HoverColor[showPm.info.options[0].color];
         opt1Btn.style['box-shadow']='0px 2px '+HoverBorderColor[showPm.info.options[0].color];
         opt2Btn.style['background-color']=HoverColor[showPm.info.options[1].color];
@@ -163,18 +163,36 @@ window.onload = function(){
     function Vote(i){
         if (id){
             var apiUrlVote=window.location.origin+'/pollAdded/'+id+i+'/info';
-            var apiGetVote=window.location.origin+'/pollAdded/'+id+'/info'
+            var apiGetVote=window.location.origin+'/pollAdded/'+id+'/info';
             ajaxFunctions.ajaxRequest('POST', apiUrlVote, function(){
                 ajaxFunctions.ajaxRequest('GET', apiGetVote, showPollName)});
             
         }
     }
     
+    function setOptWidth(OptArray){
+        var max=0;
+        var width=20;
+        for (var i=0;i<OptArray.length;i++){
+            if(OptArray[i].name.length>max){
+                max=OptArray[i].name.length;
+            }
+        }
+        if (max>8){
+            width+=(max-8)*5;
+        }
+        opt1Btn.style.width=width+'%';
+        opt2Btn.style.width=width+'%';
+        opt3Btn.style.width=width+'%';
+        opt4Btn.style.width=width+'%';
+    }
+    
     rdmBtn.addEventListener('click', function(){
+        ajaxFunctions.ajaxRequest('GET',apiUrl,showPollName);
+        
         rect3.style.display='none';
         rect4.style.display='none';
         opt3Btn.style.display='none';
         opt4Btn.style.display='none';
-        ajaxFunctions.ajaxRequest('GET',apiUrl,showPollName);
     })
 };

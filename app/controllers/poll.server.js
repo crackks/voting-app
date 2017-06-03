@@ -165,13 +165,10 @@ function Poll (){
         var pollId=[];
         var nbrVote=[];
         var stop=Number(req.params.stop);
-        console.log(stop)
         var count=0;
         polls.find().exec(function(err,data){
             if (err)throw err;
             var end=true;
-            console.log(data.length);
-            
             for (var i=data.length-stop-1; i>=0;i--){
                 for (var j=0;j<data[i].who.vote.length;j++){
                     if (data[i].who.vote[j][0]==userName){

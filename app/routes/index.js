@@ -40,10 +40,7 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, function (req, res) {
 			res.sendFile(path + '/public/myProfile.html');
 		});
-	app.route('/myindex')
-		.get(isLoggedIn, function (req,res){
-			res.sendFile(path+'/public/myindex.html');
-	});
+	
 	app.route('/newPoll')
 		.get(isLoggedIn,function (req, res) {
 			res.render('newPoll');

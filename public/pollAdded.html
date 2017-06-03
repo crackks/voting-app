@@ -3,6 +3,7 @@
 <html>
 	
 	<head>
+	    <title>Awesome Voting App - New Poll </title>
 		<link href="https://fonts.googleapis.com/css?family=Palanquin+Dark" rel="stylesheet">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
 		<link href="/public/css/myMain.css" rel="stylesheet" type="text/css">
@@ -46,214 +47,24 @@
     				<button class='option3-btn btn text-center' id=option3-btn style='display:none'><span id='showOpt3'></span></button>
     				<button class='option4-btn btn text-center' id=option4-btns style='display:none'><span id='showOpt4'></span></button>
 				</div>
-		  <div class='alert alert-danger alreadyVoteAdd text-center'>You can vote only once per poll</div>
+			<div class='alert alert-danger alreadyVote text-center'>You can vote only once per poll</div>
 		</div>
-        <script type='text/javascript' >
-            'use strict';
-
-    var ajaxFunctions = {
-   ready: function ready (fn) {
-      if (typeof fn !== 'function') {
-         return;
-      }
-
-      if (document.readyState === 'complete') {
-         return fn();
-      }
-
-      document.addEventListener('DOMContentLoaded', fn, false);
-   },
-   ajaxRequest: function ajaxRequest (method, url, callback) {
-      var xmlhttp = new XMLHttpRequest();
-
-      xmlhttp.onreadystatechange = function () {
-         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-            callback(xmlhttp.response);
-         }
-      };
-      xmlhttp.open(method, url, true);
-      xmlhttp.send();
-   }
-};
-    var apiUrl=window.location.href+'/info';
-    var pollName=document.querySelector('#pollName');
-    var option1=document.querySelector('#showOpt1');
-    var option2=document.querySelector('#showOpt2');
-    var option3=document.querySelector('#showOpt3');
-    var option4=document.querySelector('#showOpt4');
-    var opt1Btn=document.querySelector('.option1-btn');
-    var opt2Btn=document.querySelector('.option2-btn');
-    var opt3Btn=document.querySelector('.option3-btn');
-    var opt4Btn=document.querySelector('.option4-btn');
-    var rect1=document.querySelector('.rectangle1');
-    var rect2=document.querySelector('.rectangle2');
-    var rect3=document.querySelector('.rectangle3');
-    var rect4=document.querySelector('.rectangle4');
-    var spanVote1=document.querySelector('#nbrVote1');
-    var spanVote2=document.querySelector('#nbrVote2');
-    var spanVote3=document.querySelector('#nbrVote3');
-    var spanVote4=document.querySelector('#nbrVote4');
-    var percent1=document.querySelector('#percent1');
-    var percent2=document.querySelector('#percent2');
-    var percent3=document.querySelector('#percent3');
-    var percent4=document.querySelector('#percent4');
-    var Av=document.querySelector('.alreadyVoteAdd');
-    
-    var colorSet=['color1','color2','color3','color4'];
-    var HoverColor=['rgb(80,120,215)','rgb(245,120,120)','rgb(80,215,120)','rgb(255,235,60)'];
-    var HoverBorderColor=['rgb(60,100,195)','rgb(225,100,100)','rgb(60,195,100)','rgb(245,225,50)'];
-    
-    
-    function showPollName(data){
-        var Data=JSON.parse(data);
+		
+		<script type="text/javascript" src="../common/ajax-functions.js"></script>
+		<script type="text/javascript" src='../controllers/poll.client.js'></script>
         
-        if (Data.voted){
-            Av.style.display="block";
-        }
-        var showPm=Data.info;
-        var nbrOptions=showPm.optionNbr;
-        pollName.innerHTML=showPm.Name;
-        option1.innerHTML=showPm.options[0].name;
-        if (showPm.options[0].name.length>7){
-            option1.style['font-size']=18-showPm.options[0].name.length;
-        }
-        option2.innerHTML=showPm.options[1].name;
-        if (showPm.options[1].name.length>7){
-            option2.style['font-size']=18-showPm.options[1].name.length;
-        }
-        rect1.style.height=Number(Number(showPm.options[0].nbrVote/(showPm.totalVote+1))*80+7).toString()+'%';
-        rect2.style.height=Number(Number(showPm.options[1].nbrVote/(showPm.totalVote+1))*80+7).toString()+'%';
-        
-        opt1Btn.style['background-color']=HoverColor[showPm.options[0].color];
-        opt1Btn.style['box-shadow']='0px 2px '+HoverBorderColor[showPm.options[0].color];
-        opt2Btn.style['background-color']=HoverColor[showPm.options[1].color];
-        opt2Btn.style['box-shadow']='0px 2px '+HoverBorderColor[showPm.options[1].color];
-        rect1.className=colorSet[showPm.options[0].color];
-        rect2.className=colorSet[showPm.options[1].color];
-        
-        if (nbrOptions==3){
-            rect3.style.display='block';
-            opt3Btn.style.display='block';
-            option3.innerHTML=showPm.options[2].name;
-            if (showPm.options[2].name.length>7){
-                option3.style['font-size']=18-showPm.options[2].name.length;
-            }
-            rect3.style.height=Number(Number(showPm.options[2].nbrVote/(showPm.totalVote+1))*80+7).toString()+'%';
-            
-            rect3.className=colorSet[showPm.options[2].color];
-            
-            opt3Btn.style['background-color']=HoverColor[showPm.options[2].color];
-            opt3Btn.style['box-shadow']='0px 2px '+HoverBorderColor[showPm.options[2].color];
-            
-            if (showPm.options[2].nbrVote<=1){
-                spanVote3.innerHTML=showPm.options[2].nbrVote+ ' Vote';
-            }
-            else{
-                spanVote3.innerHTML=showPm.options[2].nbrVote+ ' Votes';
-            }
-        }
-        if(nbrOptions==4) {
-            rect4.style.display='block';
-            opt4Btn.style.display='block';
-            rect3.style.display='block';
-            opt3Btn.style.display='block';
-            rect3.className=colorSet[showPm.options[2].color];
-            if (showPm.options[2].name.length>9){
-                option3.style['font-size']=14-showPm.options[2].name.length;
-            }
-            if (showPm.options[3].name.length>9){
-                option4.style['font-size']=14-showPm.options[3].name.length;
-            }
-            opt3Btn.style['background-color']=HoverColor[showPm.options[2].color];
-            opt3Btn.style['box-shadow']='0px 2px '+HoverBorderColor[showPm.options[2].color];
-            rect4.className=colorSet[showPm.options[3].color];
-            opt4Btn.style['background-color']=HoverColor[showPm.options[3].color];
-            opt4Btn.style['box-shadow']='0px 2px '+HoverBorderColor[showPm.options[3].color];
-            option4.innerHTML=showPm.options[3].name;
-            rect4.style.height=Number(Number(showPm.options[3].nbrVote/(showPm.totalVote+1))*80+7).toString()+'%';
-            option3.innerHTML=showPm.options[2].name;
-            rect3.style.height=Number(Number(showPm.options[2].nbrVote/(showPm.totalVote+1))*80+7).toString()+'%';
-            if (showPm.options[3].nbrVote<=1){
-                spanVote4.innerHTML=showPm.options[3].nbrVote+ ' Vote';
-            }
-            else{
-                spanVote4.innerHTML=showPm.options[3].nbrVote+ ' Votes';
-            }
-            
-            if (showPm.options[2].nbrVote<=1){
-                spanVote3.innerHTML=showPm.options[2].nbrVote+ ' Vote';
-            }
-            else{
-                spanVote3.innerHTML=showPm.options[2].nbrVote+ ' Votes';
-            }
-        }   
-        
-        
-        if (showPm.options[0].nbrVote<=1){
-            
-            spanVote1.innerHTML=showPm.options[0].nbrVote+ ' Vote';
-        }
-        else{
-            spanVote1.innerHTML=showPm.options[0].nbrVote+ ' Votes';
-        }
-        if(showPm.options[1].nbrVote<=1){
-            spanVote2.innerHTML=showPm.options[1].nbrVote+ ' Vote';
-        }
-        else{
-            spanVote2.innerHTML=showPm.options[1].nbrVote+ ' Votes';
-        }
-        
-        if (showPm.totalVote!=0){
-            var p1=Math.floor(showPm.options[0].nbrVote/showPm.totalVote*100*100)/100;
-            
-            if (nbrOptions==3){
-                var p3=Math.floor(showPm.options[2].nbrVote/showPm.totalVote*100*100)/100;
-                percent1.innerHTML=p1+'%';
-                percent2.innerHTML=Math.floor(10000-(p1+p3)*100)/100+'%';
-                percent3.innerHTML=p3+'%';
-            }
-            else if(nbrOptions==4){
-                p3=Math.floor(showPm.options[2].nbrVote/showPm.totalVote*100*100)/100;
-                var p4=Math.floor(showPm.options[3].nbrVote/showPm.totalVote*100*100)/100;
-                percent1.innerHTML=p1+'%';
-                percent2.innerHTML=Math.floor(10000-(p1+p3+p4)*100)/100+'%';
-                percent3.innerHTML=p3+'%';
-                percent4.innerHTML=p4+'%';
-            }
-            else{
-                percent1.innerHTML=p1+'%';
-                percent2.innerHTML=Math.floor(10000-p1*100)/100+'%';
-            }
-            
-        }
-    }
-    
-    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, showPollName));
-    
-    rect1.addEventListener('click', function () {Vote(0);});
-    opt1Btn.addEventListener('click', function () {Vote(0);});
-      
-    rect2.addEventListener('click', function () {Vote(1);}); 
-    opt2Btn.addEventListener('click', function () {Vote(1);});
-    
-    rect3.addEventListener('click', function () {Vote(2);});
-    opt3Btn.addEventListener('click', function () {Vote(2);});
-    
-    rect4.addEventListener('click', function () {Vote(3);});
-    opt4Btn.addEventListener('click', function () {Vote(3);});
-    
-    function Vote(i){
-            
-            var apiUrlVote=window.location.href+i+'/info';
-            ajaxFunctions.ajaxRequest('POST', apiUrlVote,function(){
-               ajaxFunctions.ajaxRequest('GET', apiUrl, showPollName);});
-    }
-    
-        </script>
 	</body>
 	
 	<footer>
-		<p> Created by Paul-Emile Chantrel</p>
+		<p> Created by Paul-Emile Chantrel   
+			<a href='https://github.com/crackks' target="_blank">
+				<img src='../public/img/gh-mark-32px.png' class='gh-footer'/>
+			</a>
+			<a href='https://codepen.io/crx/' target="_blank">
+				<img src='https://blog.codepen.io/wp-content/uploads/2012/06/Button-Black-Large.png'  class='gh-footer'>
+			</a>
+		</p>
+		<p class='Alr'>All right reserved ©</p>
 	</footer>
 
 </html>

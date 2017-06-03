@@ -125,3 +125,21 @@ input[type=text],input[type=password],input[type=email]{
     background-color: rgb(90,120,225);
     
 }
+
+.Alr{
+    font-size:10px;
+    margin-top:-10px;
+}
+.gh-footer{
+    width:20px;
+    height:20px;
+}
+
+footer{
+    margin-top:18%;
+    position: fixed;
+    width:100%;
+    bottom:0px;
+    text-align: center;
+    color:rgb(255,255,255);
+}

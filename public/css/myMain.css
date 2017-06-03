@@ -105,7 +105,7 @@ a:hover{
 .boxSize5{
     width:50%;
     height:420px;
-    margin-top:3%;
+    margin-top:2.5%;
     margin-bottom: 6%;
 }
 .boxSize6{
@@ -262,8 +262,7 @@ input[type=text],select{
     font-family: 'Palanquin Dark', sans-serif;
     width:40%;
     padding:30px;
-    margin-top:15%;
-    margin-bottom:22.5%;
+    margin-top:20%;
     margin-left:30%;
     color:rgb(70,110,215);
 }
@@ -276,6 +275,7 @@ input[type=text],select{
     margin-top: -4%;
     color:rgb(0,0,0);
 }
+
 .optBtn{
     background-color: rgb(120,160,255);
     box-shadow: 0px 2px rgb(100,140,235);
@@ -338,8 +338,9 @@ select{
     align-items:center;
 }
 .option1-btn,.option2-btn,.option3-btn,.option4-btn{
-    width:20%;
-    text-align:center;
+    margin:2px;
+    padding:5px 2px 5px 2px;
+    
 }
 .option1-btn,.option3-btn,.option4-btn{
 
@@ -358,10 +359,12 @@ select{
 
 .color1,.color2,.color3,.color4{
     color:transparent;
-    width: 20%;
+    width: 30%;
     height: 7%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    margin-left:2px;
+    margin-right:2px;
     cursor:pointer;
     border-width:2px;
     border-style: solid;
@@ -434,6 +437,7 @@ select{
 .selectColor3,.selectColor2{
     margin-top:4px;
     margin-bottom:4px;
+    
 }
 
 .opt-container{
@@ -446,12 +450,12 @@ select{
 }
 
 .delete-opt3,.delete-opt4{
-    align-self:flex-start;
-    width:3%;
-    font-size:10px;
-    padding: 2px;
+    width:22px;
+    height:22px;
+    padding:0px;
+    font-size:15px;
     background-color: rgb(245,120,120);
-    box-shadow: 0px 1px rgb(225,100,100);
+    box-shadow: 0px 2px rgb(225,100,100);
     margin-left:1%;
 }
 .delete-opt3:hover,.delete-opt4:hover{
@@ -460,7 +464,7 @@ select{
 
 .alreadyVote{
     display: none;
-    margin:6% auto 0% auto;
+    margin:4% auto 0% auto;
 }
 .alreadyVoteRdm{
     display: none;
@@ -515,7 +519,7 @@ select{
 
 .morePoll{
     margin-left:5%;
-    margin-bottom: 5%;
+    margin-bottom: 9%;
     width:90%;
     padding:20px;
 }
@@ -523,14 +527,28 @@ select{
 .morePolltxt{
     margin-top: 0px;
 }
+
+.Alr{
+    font-size:10px;
+    margin-top:-10px;
+}
+.gh-footer{
+    width:20px;
+    height:20px;
+}
+html{
+    min-height: 100%;
+    position:relative;
+}
 footer{
     text-align: center;
     background-color:rgb(90,130,225);
     color:rgb(255,255,255);
     height: 60px;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 1px 0px 2px  rgb(50,50, 200);
-    position:relative;
+    position:absolute;
+    overflow:hidden;
     bottom: 0px;
     width:100%;
     left:0px;
