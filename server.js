@@ -7,7 +7,6 @@ var passport = require('passport');
 var session = require('express-session');
 var bodyParser=require('body-parser');
 var flash=require("connect-flash");
-var LocalPassport=require("passport-local").Strategy;
 var expHb=require("express-handlebars");
 var expressValidator=require("express-validator");
 

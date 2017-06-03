@@ -1,7 +1,6 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 var poll= require (path+'/app/controllers/poll.server.js');
 var User=require (path+ '/app/controllers/user.server.js');
 module.exports = function (app, passport) {
@@ -18,7 +17,6 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var clickHandler = new ClickHandler();
 	var Poll=new poll();
 	var user= new User();
 	app.route('/')
@@ -70,19 +68,6 @@ module.exports = function (app, passport) {
 	app.route('/api/:id')
 		.get(isLoggedIn, user.getProfile);
 
-	app.route('/auth/github')
-		.get(passport.authenticate('github'));
-
-	app.route('/auth/github/callback')
-		.get(passport.authenticate('github', {
-			successRedirect: '/',
-			failureRedirect: '/login'
-		}));
-
-	app.route('/api/:id/clicks')
-		.get(isLoggedIn, clickHandler.getClicks)
-		.post(isLoggedIn, clickHandler.addClick)
-		.delete(isLoggedIn, clickHandler.resetClicks);
 		
 	app.route('/pollAdded/:pollId/info')
 		.get(isLoggedIn,Poll.showInfo)
